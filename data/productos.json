@@ -1,0 +1,6 @@
+[
+  { "id": 1, "nombre": "Laptop", "precio": 850, "stock": 10, "categoria": "Electrónica" },
+  { "id": 2, "nombre": "Mouse", "precio": 15, "stock": 50, "categoria": "Accesorios" },
+  { "id": 3, "nombre": "Teclado", "precio": 25, "stock": 30, "categoria": "Accesorios" },
+  { "id": 4, "nombre": "Monitor", "precio": 200, "stock": 8, "categoria": "Electrónica" }
+]
