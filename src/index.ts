@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { readJSON, writeJSON } from "./db";
+import * as os from "os";
 
 const app = express();
 app.use(express.json());
@@ -77,6 +78,26 @@ app.delete("/productos/:id", (req, res) => {
   writeJSON(FILE, filtrados);
   res.status(204).send();
 });
+
+//GET HEALTH CHECKS
+app.get("/health", (req, res) => {
+  //Si recibe ?simular=falla devuelva 503
+  if(req.query.simular === "falla"){
+    return res.status(503).json({
+      estado: "no saluble",
+      nodo: os.hostname(),
+      timestamp: new Date().toISOString(),
+      mensaje: "Falla simulada"
+    })
+  }
+
+  //Normalmentr, aqui se verifica BD, Redis, etc
+  res.status(200).json({
+    estado: "saludable", 
+    nodo: os.hostname(),
+    timestamp: new Date().toISOString(),
+  })
+})
 
 // ---------- Arranque ----------
 const PORT = Number(process.env.PORT) || 9090;
